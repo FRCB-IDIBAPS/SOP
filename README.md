@@ -40,10 +40,12 @@ Using cd command you can move inside the system.
     -   On a Unix system, open a Nautilus window and search the "+ Other
         Locations" button on the left hand bar.
 
+        ![Alt text](./images/image2.png)
+
     -   Click on it and you will see a bar on the right bottom of the
         page
 
-![Alt text](./images/image2.png)
+        ![Alt text](./images/image3.png)
 
 Type 
 ```bash
@@ -62,15 +64,15 @@ navigate through all the directories.
     -   Click the following icon on the bottom-left corner of the
         screen:
 
-        ![Alt text](./images/image3.png)
+        ![Alt text](./images/image4.png)
 
     -   It will open the following dialogue box on top of the screen:
 
-        ![Alt text](./images/image4.png)
+        ![Alt text](./images/image5.png)
 
     -   Here you can choose either "Connect to Host" or "Connect Current Window to Host". Then clink on "+ Add New SSH Host"
 
-        ![Alt text](./images/image5.png)
+        ![Alt text](./images/image6.png)
 
 
     -   and type: 
@@ -81,11 +83,11 @@ navigate through all the directories.
 
     -   If you repeat the process, you will find a button called "Configure SSH Hosts". Then clik on "/home/user/.ssh/config"
 
-        ![Alt text](./images/image6.png)
+        ![Alt text](./images/image7.png)
 
     -   The config file will open for edit. By default, you will have something like this:
 
-        ![Alt text](./images/image7.png)
+        ![Alt text](./images/image8.png)
 
     -   Replace \<Name\> with your nickname and \<user\_name\> with your nord4 ID and save the file. You can also choose one of thEvery time you want to establish connection to the server with VSC you can just click on your name after "Connect to Host" or "Connect Current Window to Host".
 
@@ -93,6 +95,8 @@ Folder structure
 ================
 
 Nord4 uses a General Parallel File System (GPFS) where its mounted:
+
+![Alt text](./images/image9.png)
 
 For most users, the most important folders will be:
 
@@ -106,7 +110,7 @@ For most users, the most important folders will be:
 
 These directories are available from all the Nord4 nodes.
 
--   **[/gpfs/home]{.underline}**:
+-   **/gpfs/home**:
 
     -   /gpfs/home contains all the user's home directories inside the
         corresponding group folder. For example:
@@ -121,7 +125,7 @@ These directories are available from all the Nord4 nodes.
 
     -   It's indicated to store personal data and own-developed scripts.
 
--   **[/gpfs/projects]{.underline}**:
+-   **/gpfs/projects**:
 
     -   /gpfs/projects is a specific directory for each group. For
         example, all the users in the group idib57 will have a common
@@ -138,41 +142,44 @@ These directories are available from all the Nord4 nodes.
     -   IMPORTANT! ! /gpfs/projects is not intended for long-term
         storage. See data maintainment part.
 
--   **[/gpfs/apps/MN4]{.underline}**:
+-   **/gpfs/apps/MN4**:
 
     -   /gpfs/apps contains all the software, applications and libraries
         already installed in the system and available to all users. For
         example, if you want to run an R script with the R version 4.3.0
         you should do:
 
-        -   **module load gcc pcre2 R/4.3.0 \#load the desired modules
-            and their dependencies**
+        ```bash
+        module load gcc pcre2 R/4.3.0 #load the desired modules and their dependencies
+        ```
 
-        -   **Rscript \<script\_name\>.R \#run the script**
+        ```bash
+        Rscript <script_name>.R #run the script
+        ```
 
     -   For example, if we get the directory tree of the R folder with 1
         level in depth, we can see all the R versions available. Each
         one with its specific folder:
 
-And the tree of the R/4.3.0 with 4 levels in depth:
+        ![Alt text](./images/image10.png)
 
-In /gpfs/apps/MN4/R/4.3.0/GCC/lib64/R/library/ you can find all the
-installed packages for this R version. Just to have a glimpse:
+    -   And the tree of the R/4.3.0 with 4 levels in depth:
 
--   The users are not allowed to modify any content of /gpfs/apps/MN4.
-    If you need some library or package that is not found in
-    /gpfs/apps/MN4 you should ask <support@bsc.es> to do it for you.
-    Please, first make sure that it is actually not installed.
+        ![Alt text](./images/image11.png)
 
--   Another important folder for bioinformatics is
-    /gpfs/apps/SL/BIODATA. This folder is intended to store biological
-    and clinical databases as well as reference files such as genome
-    versions for the most common model organisms. It was originally
-    created in StarLife (SL) cluster but is accessible to all NORD4
-    users. In this manner it is not necessary to upload these files to
-    your /gpfs/projects/\<group\_ID\> if it is already in
-    /gpfs/apps/SL/BIODATA and redundant copies inside the system are
-    avoided.
+    -   In /gpfs/apps/MN4/R/4.3.0/GCC/lib64/R/library/ you can find all    the installed packages for this R version. Just to have a glimpse:
+
+        ![Alt text](./images/image12.png)
+
+
+    -   The users are not allowed to modify any content of /gpfs/apps/MN4.
+        If you need some library or package that is not found in
+        /gpfs/apps/MN4 you should ask <support@bsc.es> to do it for you.
+        Please, first make sure that it is actually not installed.
+
+    -   Another important folder for bioinformatics is
+        /gpfs/apps/SL/BIODATA. This folder is intended to store biological
+        and clinical databases as well as reference files such as genome or transcriptome versions for the most common model organisms. It was originally created in StarLife (SL) cluster but is accessible to all NORD4 users. In this manner it is not necessary to upload these files to your /gpfs/projects/\<group\_ID\> if it is already in /gpfs/apps/SL/BIODATA and redundant copies inside the system are avoided.
 
 ```{=html}
 <!-- -->
