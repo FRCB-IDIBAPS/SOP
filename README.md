@@ -1,14 +1,14 @@
-[How to acces the resources 1](#how-to-acces-the-resources)
+[How to acces the resources](#how-to-acces-the-resources)
 
-[Folder structure 4](#folder-structure)
+[Folder structure](#folder-structure)
 
-[Version Control 7](#version-control)
+[Version Control](#version-control)
 
-[How to upload data 8](#how-to-upload-data)
+[How to upload data](#how-to-upload-data)
 
-[Data maintainment 8](#data-maintainment)
+[Data maintainment](#data-maintainment)
 
-[How to execute jobs 9](#how-to-execute-jobs)
+[How to execute jobs](#how-to-execute-jobs)
 
 How to acces the resources
 ==========================
@@ -49,7 +49,7 @@ Using cd command you can move inside the system.
 
 Type 
 ```bash
-sftp://<user_name>@<login_node>.bsc.es/** 
+sftp://<user_name>@<login_node>.bsc.es/
 ```
 and click "Connect".
 
@@ -380,7 +380,7 @@ running while 32597257 is still in pending (PD) state (ST).
 
 Once you want to finish the interactive session just type **exit**.
 
-**[Batch Submitting:]{.underline}**
+**Batch Submitting:**
 
 NORD4 cluster uses Slurm (Simple Linux Utility for Resource Management)
 as its job scheduler. Slurm organizes and allocates computing resources
@@ -398,8 +398,8 @@ in HPC clusters, ensuring fair and efficient usage.
     and workloads.
 
 A job is the basic unit of execution in Slurm. It is defined by a job
-script---a text file containing a set of Slurm directives and shell
-commands. The directives specify the job's resource requirements and are
+script (a text file containing a set of Slurm directives and shell
+commands). The directives specify the job's resource requirements and are
 written as special comments in the script. These must follow a specific
 syntax to correctly inform the system of the job\'s needs.
 
@@ -462,7 +462,7 @@ my\_r\_script.R to run in a single NORD4 node with approximately 8GB of
 RAM for 1.5 hours as maximum:
 
 ```bash
-#!/bin/bash**
+#!/bin/bash
 
 #SBATCH --job-name=R_job            # Job name
 
@@ -507,52 +507,63 @@ there is the possibility to specify a high memory node (384GB7node i.e.
 Requesting these nodes means the job will last longer in the queue (before start running).
 
 Rstudio in Nord4 server
+=======================
+
 
 **Private connection to compute node**
 
 Create and save the following script as a bash (.sh extension) script.
 For example: "Rstudio\_server.sh".
 
-**\#!/bin/bash**
+```bash
+#!/bin/bash**
 
-**\#SBATCH \--job-name=rstudio\_server**
+#SBATCH --job-name=rstudio_server
 
-**\#SBATCH \--output=rstudio\_%j.out**
+#SBATCH --output=rstudio_%j.out
 
-**\#SBATCH \--error=rstudio\_%j.err**
+#SBATCH --error=rstudio_%j.err
 
-**\#SBATCH \--nodes=1**
+#SBATCH --nodes=1
 
-**\#SBATCH \--ntasks=1**
+#SBATCH --ntasks=1
 
-**\#SBATCH \--cpus-per-task=48**
+#SBATCH --cpus-per-task=48
 
-**\#SBATCH \--account=idib57**
+#SBATCH --account=idib57
 
-**\#SBATCH \--time=01:00:00**
+#SBATCH --time=01:00:00
 
-**\#SBATCH \--exclusive**
+#SBATCH --exclusive
 
-**\#SBATCH \--qos=cli**
+#SBATCH --qos=cli
 
-**\# Load all required modules for you application here:**
 
-**module load gcc/7.2.0 pcre2/10.39 boost/1.69.0 R/4.1.2 openssl/1.1.1o
-RSTUDIO/1.3-rserver**
+# Load all required modules for you application here:
 
-**\# For RStudio server (default port: 8787)**
+module load gcc/7.2.0 pcre2/10.39 boost/1.69.0 R/4.1.2 openssl/1.1.1o
+RSTUDIO/1.3-rserver
 
-**rserver \--www-address=127.0.0.1**
+# For RStudio server (default port: 8787)
+
+rserver \--www-address=127.0.0.1
+```
 
 Once you have it ready, open a terminal and run the script doing:
 
-**sbatch path/to/Rstudio\_server.sh**
+```bash
+sbatch path/to/Rstudio\_server.sh
+```
 
 This script is thought to reserve a whole compute node for your user.
 Run squeue to see when it starts running and which node is reserved for
 you.
 
-**squeue**
+```bash
+squeue
+```
+
+![Alt text](./images/image18.png)
 
 In the case above we got s01r2b39 reserved for us.
 
@@ -561,8 +572,11 @@ socket. This socket has to be private for us so a good practice would be
 to first change to a private directory, for example, our /gpfs/home.
 Then, run the following command with the compute node reserved:
 
-**ssh -L ./socket.sock:localhost:8787 \<node\_ID\>** (change the compute
-node)
+```bash
+ssh -L ./socket.sock:localhost:8787 <node_ID> # change the compute node
+```
+
+![Alt text](./images/image19.png)
 
 Now a new file named socket.sock has been created in your private home
 directory. If it's not the first time you do this remember to first
