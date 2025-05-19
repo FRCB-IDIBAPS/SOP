@@ -1,30 +1,29 @@
-[How to acces the resources](#how-to-acces-the-resources)
+- [How to access the resources](#how-to-access-the-resources)
+    - [Console](#console)
+    - [Nautilius](#nautilus)
+    - [Visual Studio Code](#visual-studio-code)
+- [Folder structure](#folder-structure)
+    - [/gpfs/home](#gpfshome)
+    - [/gpfs/projects](#gpfsprojects)
+    - [/gpfs/apps](#gpfsappsmn4)
+    - [/gpfs/scratch](#gpfsscratch)
+- [Version Control](#version-control)
+- [How to upload data](#how-to-upload-data)
+- [Data maintainment](#data-maintainment)
+- [How to execute jobs](#how-to-execute-jobs)
+    - [Interactively](#interactively)
+    - [Batch Submitting](#batch-submitting)
+    - [Rstudio in Nord4 server](#rstudio-in-nord4-server)
 
-[Folder structure](#folder-structure)
-
-[Version Control](#version-control)
-
-[How to upload data](#how-to-upload-data)
-
-[Data maintainment](#data-maintainment)
-
-[How to execute jobs](#how-to-execute-jobs)
-
-[Interactivelly:](#interactively)
-
-[Batch Submmiting:](#batch-submitting)
-
-[Rstudio in Nord4 server](#rstudio-in-nord4-server)
 
 # How to acces the resources
-==========================
 
 Cluster resources can be reached in different ways, but all require
 having a valid username ID and a password to get access to them. The
 connection will always be made through one of the available login nodes
 n4login1, n4login2 and n4login3.
 
--   **Console** :
+-   ## **Console** :
 
     -   Open a terminal in your PC and type:
 
@@ -32,7 +31,7 @@ n4login1, n4login2 and n4login3.
 ssh <user_name>@<login_node>.bsc.es
 ```
 
-Replace \<username\> with your nord4 ID and \<login\_node\> with either n4login1, n4login2 or n4login3. The prompt will ask you to type
+Replace **\<username\>** with your nord4 ID and **\<login\_node\>** with either n4login1, n4login2 or n4login3. The prompt will ask you to type
 in the password and you will see something like this:
 
 ![Alt text](./images/image1.png)
@@ -41,10 +40,10 @@ In this case we have logged in via n4login2. If we type pwd we will
 see, we are inside our home (**/home/rcli/\<user\_name\>**) directory.
 Using cd command you can move inside the system.
 
--   **Nautilus**
+-   ## **Nautilus**
 
-    -   On a Unix system, open a Nautilus window and search the "+ Other
-        Locations" button on the left hand bar.
+    -   On a Unix system, open a Nautilus window and search the **+ Other
+        Locations** button on the left hand bar.
 
         ![Alt text](./images/image2.png)
 
@@ -53,16 +52,17 @@ Using cd command you can move inside the system.
 
         ![Alt text](./images/image3.png)
 
-Type 
+Type:
+
 ```bash
 sftp://<user_name>@<login_node>.bsc.es/
 ```
-and click "Connect".
+and click **Connect**.
 
 Your home (**/gpfs/home/\<institution\>/\<user\_name\>**) will open and then you can
 navigate through all the directories.
 
--   **Visual Studio Code**
+-   ## **Visual Studio Code**
 
     -   In Visual Studio Code you can establish connection through ssh
         aswell.
@@ -76,7 +76,7 @@ navigate through all the directories.
 
         ![Alt text](./images/image5.png)
 
-    -   Here you can choose either "Connect to Host" or "Connect Current Window to Host". Then clink on "+ Add New SSH Host"
+    -   Here you can choose either **Connect to Host** or **Connect Current Window to Host**. Then clink on **+ Add New SSH Host**.
 
         ![Alt text](./images/image6.png)
 
@@ -87,7 +87,7 @@ navigate through all the directories.
     ssh <user_name>@<login_node>.bsc.es
     ```
 
-    -   If you repeat the process, you will find a button called "Configure SSH Hosts". Then clik on "/home/user/.ssh/config"
+    -   If you repeat the process, you will find a button called **Configure SSH Hosts**. Then clik on **/home/user/.ssh/config**
 
         ![Alt text](./images/image7.png)
 
@@ -95,10 +95,9 @@ navigate through all the directories.
 
         ![Alt text](./images/image8.png)
 
-    -   Replace \<Name\> with your nickname and \<user\_name\> with your nord4 ID and save the file. You can also choose one of thEvery time you want to establish connection to the server with VSC you can just click on your name after "Connect to Host" or "Connect Current Window to Host".
+    -   Replace **\<Name\>** with your nickname and **\<user\_name\>** with your nord4 ID and save the file. You can also choose one of thEvery time you want to establish connection to the server with VSC you can just click on your name after **Connect to Host** or **Connect Current Window to Host**.
 
 # Folder structure
-================
 
 Nord4 uses a General Parallel File System (GPFS) where its mounted:
 
@@ -106,20 +105,17 @@ Nord4 uses a General Parallel File System (GPFS) where its mounted:
 
 For most users, the most important folders will be:
 
-**/gpsf/home**
-
-**/gpfs/projects**
-
-**/gpfs/apps**
-
-**/gpfs/scratch**
+### <p align="center"><strong>/gpfs/home</strong></p>
+### <p align="center"><strong>/gpfs/projects</strong></p>
+### <p align="center"><strong>/gpfs/apps</strong></p>
+### <p align="center"><strong>/gpfs/scratch</strong></p>
 
 These directories are available from all the Nord4 nodes.
 
--   **/gpfs/home**:
+-   ## **/gpfs/home**:
 
     -   **/gpfs/home** contains all the user's home directories inside the
-        corresponding group folder. For example:
+        corresponding institution folder. For example:
         **/gpfs/home/rcli/idib057763/**.
 
     -   This is the current directory once the user logs in.
@@ -131,7 +127,7 @@ These directories are available from all the Nord4 nodes.
 
     -   It's indicated to store personal data and own-developed scripts.
 
--   **/gpfs/projects**:
+-   ## **/gpfs/projects**:
 
     -   **/gpfs/projects** is a specific directory for each group. For
         example, all the users in the group idib57 will have a common
@@ -142,15 +138,14 @@ These directories are available from all the Nord4 nodes.
     -   The data in **/gpfs/projects** is shared with all the users in the
         group.
 
-    -   The quota of **/gpfs/projects/\<groupID\>** can be consulted running
-        *bsc\_quota* in the terminal.
+    -   The quota of **/gpfs/projects/\<groupID\>** can be consulted running **bsc\_quota** in the terminal.
 
     -   IMPORTANT!! **/gpfs/projects** is not intended for long-term
         storage. See data maintainment part.
 
     -   **/gpfs/projects** is backuped periodically.
 
--   **/gpfs/apps/MN4**:
+-   ## **/gpfs/apps/MN4**:
 
     -   **/gpfs/apps** contains all the software, applications and libraries
         already installed in the system and available to all users. For
@@ -182,14 +177,14 @@ These directories are available from all the Nord4 nodes.
 
     -   The users are not allowed to modify any content of **/gpfs/apps** MN4.
         If you need some library or package that is not found in
-        /gpfs/apps/MN4 you should ask <support@bsc.es> to do it for you.
+        /gpfs/apps/MN4 you should ask **<support@bsc.es>** to do it for you.
         Please, first make sure that it is actually not installed.
 
     -   Another important folder for bioinformatics is
         **/gpfs/apps/SL/BIODATA**. This folder is intended to store biological and clinical databases as well as reference files such as genome or transcriptome versions for the most common model organisms. It was originally created in StarLife (SL) cluster but is accessible to all NORD4 users. In this manner it is not necessary to upload these files to your **/gpfs/projects/\<group\_ID\>** if it is already in **/gpfs/apps/SL/BIODATA** and redundant copies inside the system are avoided.
 
 
--   **/gpfs/scratch**:
+-   ## **/gpfs/scratch**:
 
     -   Each user has a directory in
         **/gpfs/scratch/\<group\_ID\>/\<user\_ID\>**.
@@ -253,7 +248,7 @@ transfer node would be:
 
 The transfer progress will be shown in the terminal as the files are
 being copied. Also, if the connection is being interrupted the transfer
-can be resumed because of the "\--partial" flag.
+can be resumed because of the **\--partial** flag.
 
 # Data maintainment 
 
@@ -263,11 +258,11 @@ steps: loading raw data onto the server (1), performing the analysis
 accessible to project collaborators (3).
 
 But what happens as we start working on more projects? The amount of
-data---ranging from gigabytes to terabytes---stored in our HPC space can
+data (ranging from a few to several Terabytes) stored in our HPC space can
 grow rapidly. That's why a plan to manage our data and storage space in
 a responsible and safe manner is needed.
 
-As mentioned in the folder structure section, /gpfs/projects/ is not
+As mentioned in the folder structure section, **/gpfs/projects/** is not
 intended for long-term data storage. Therefore, once a project is
 completed, data should be transferred to more appropriate storage
 solutions. Regular cleanup sessions should also be conducted to free up
@@ -288,10 +283,8 @@ idib57.
 ![Alt text](./images/image14.png)
 
 Each user has a fixed quota of 80 GB in their home directory, which is
-accessible only by that specific user---hence the *USR* type. In
-contrast, the quotas for /gpfs/projects/GROUP and /gpfs/scratch/GROUP
-are shared among all members of the same project, corresponding to the
-*GRP* type.
+accessible only by that specific user, hence the *USR* type. In
+contrast, the quotas for **/gpfs/projects/GROUP** and **/gpfs/scratch/GROUP** are shared among all members of the same project, corresponding to the *GRP* type.
 
 The different fields in the quota output are explained below:
 
@@ -373,8 +366,7 @@ this relation is not allowed.
 
 ![Alt text](./images/image17.png)
 
-To run interactive sessions in the main partition queue parameter has to
-be set to cli or debug like in the job 32597261. Notice it is already
+To run interactive sessions in the main partition the queue parameter has to be set to cli or debug like in the job 32597261. Notice it is already
 running while 32597257 is still in pending (PD) state (ST).
 
 Once you want to finish the interactive session just type **exit**.
@@ -493,26 +485,24 @@ together with the JOBID. To cancel a job, whether it is running or not,
 just type **scancel \<JOBID\>**.
 
 NORD4 has 72 nodes with 96GB/node but if your job requires more RAM
-there is the possibility to specify a high memory node (384GB7node i.e.
+there is the possibility to specify a high memory node (384GB/node i.e.
 8GB per core). Add the following in the \#SBATCH directives:
 
 ```bash
 #SBATCH --constraint=highmem
 ```
 
-Requesting these nodes means the job will last longer in the queue (before start running).
+Requesting these nodes will make the job last longer in the queue before start running.
 
 # Rstudio in Nord4 server
-=======================
 
-
-**Private connection to compute node**
+### **Private connection to compute node**
 
 Create and save the following script as a bash (.sh extension) script.
-For example: "Rstudio\_server.sh".
+For example: Rstudio\_server.sh.
 
 ```bash
-#!/bin/bash**
+#!/bin/bash
 
 #SBATCH --job-name=rstudio_server
 
@@ -552,7 +542,7 @@ sbatch path/to/Rstudio_server.sh
 ```
 
 This script is thought to reserve a whole compute node for your user.
-Run squeue to see when it starts running and which node is reserved for
+Run **squeue** to see when it starts running and which node is reserved for
 you.
 
 ```bash
@@ -565,7 +555,7 @@ In the case above we got s01r2b39 reserved for us.
 
 To complete the compute node reservation now we have to generate a unix
 socket. This socket has to be private for us so a good practice would be
-to first change to a private directory, for example, our /gpfs/home.
+to first change to a private directory, for example, our **/gpfs/home/\<institution\>/\<user_name\>**.
 Then, run the following command with the compute node reserved:
 
 ```bash
@@ -579,16 +569,16 @@ directory. If it's not the first time you do this remember to first
 delete the socket.sock doing **rm socket.sock** prior to create it
 again.
 
-**Connection from local PC to login node**
+### **Connection from local PC to login node**
 
 First open a new terminal. It won't work in the same terminal above.
-Don't connect into the cluster. You want to establish this connection
+Don't connect into the cluster! You want to establish this connection
 from your local machine to the socket.
 
 Run the following command changing with your actual Starlife ID.
 
 ```bash
-ssh -L 8787:/path/to/private/directory/socket.sock <user_name>@n4login1.bsc.es # change Starlife ID
+ssh -L 8787:/path/to/private/directory/socket.sock <user_name>@<login_node>.bsc.es # change Starlife ID
 ```
 
 ![Alt text](./images/image20.png)
@@ -598,9 +588,6 @@ for example) and type:
 
 **http://localhost:8787**
 
-The Rstudio window will open.
+A new Rstudio session will prompt inside the cluster directories.
 
-Bear in mind that both connections have to be established with the same
-login node. In the case above we launched the script when logged with
-n4login1. Then we had to establish the connection from our local machine
-to the socket with the same node. Otherwise, it wouldn't have worked.
+Bear in mind that both connections have to be established with the same login node. In the case above we launched the script when logged with n4login1. Then we had to establish the connection from our local machine to the socket with the same node. Otherwise, it wouldn't have worked.
