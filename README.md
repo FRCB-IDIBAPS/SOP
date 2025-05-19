@@ -552,7 +552,7 @@ rserver \--www-address=127.0.0.1
 Once you have it ready, open a terminal and run the script doing:
 
 ```bash
-sbatch path/to/Rstudio\_server.sh
+sbatch path/to/Rstudio_server.sh
 ```
 
 This script is thought to reserve a whole compute node for your user.
@@ -591,13 +591,16 @@ from your local machine to the socket.
 
 Run the following command changing with your actual Starlife ID.
 
-**ssh -L 8787:/path/to/private/directory/socket.sock
-\<user\_name\>\@n4login1.bsc.es** (change Starlife ID)
+```bash
+ssh -L 8787:/path/to/private/directory/socket.sock <user_name>@n4login1.bsc.es # change Starlife ID
+```
+
+![Alt text](./images/image20.png)
 
 Now the port has been created. Open a web browser (Firefox or Chrome,
 for example) and type:
 
-**[[http://localhost:8787]{.underline}](http://localhost:8787/)**
+**http://localhost:8787**
 
 The Rstudio window will open.
 
