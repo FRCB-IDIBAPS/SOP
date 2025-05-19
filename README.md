@@ -23,9 +23,9 @@ having a valid username ID and a password to get access to them. The
 connection will always be made through one of the available login nodes
 n4login1, n4login2 and n4login3.
 
--   ## **Console** :
+## **Console** :
 
-    -   Open a terminal in your PC and type:
+Open a terminal in your PC and type:
 
 ```bash
 ssh <user_name>@<login_node>.bsc.es
@@ -40,17 +40,15 @@ In this case we have logged in via n4login2. If we type pwd we will
 see, we are inside our home (**/home/rcli/\<user\_name\>**) directory.
 Using cd command you can move inside the system.
 
--   ## **Nautilus**
+## **Nautilus**
 
-    -   On a Unix system, open a Nautilus window and search the **+ Other
-        Locations** button on the left hand bar.
+On a Unix system, open a Nautilus window and search the **+ Other Locations** button on the left hand bar.
 
-        ![Alt text](./images/image2.png)
+![Alt text](./images/image2.png)
 
-    -   Click on it and you will see a bar on the right bottom of the
-        page
+Click on it and you will see a bar on the right bottom of the page
 
-        ![Alt text](./images/image3.png)
+![Alt text](./images/image3.png)
 
 Type:
 
@@ -62,40 +60,38 @@ and click **Connect**.
 Your home (**/gpfs/home/\<institution\>/\<user\_name\>**) will open and then you can
 navigate through all the directories.
 
--   ## **Visual Studio Code**
+## **Visual Studio Code**
 
-    -   In Visual Studio Code you can establish connection through ssh
-        aswell.
+In Visual Studio Code you can establish connection through ssh aswell.
 
-    -   Click the following icon on the bottom-left corner of the
-        screen:
+Click the following icon on the bottom-left corner of the screen:
 
-        ![Alt text](./images/image4.png)
+![Alt text](./images/image4.png)
 
-    -   It will open the following dialogue box on top of the screen:
+It will open the following dialogue box on top of the screen:
 
-        ![Alt text](./images/image5.png)
+![Alt text](./images/image5.png)
 
-    -   Here you can choose either **Connect to Host** or **Connect Current Window to Host**. Then clink on **+ Add New SSH Host**.
+Here you can choose either **Connect to Host** or **Connect Current Window to Host**. Then clink on **+ Add New SSH Host**.
 
-        ![Alt text](./images/image6.png)
+![Alt text](./images/image6.png)
 
 
-    -   and type: 
+and type: 
     
-    ```bash
-    ssh <user_name>@<login_node>.bsc.es
-    ```
+```bash
+ssh <user_name>@<login_node>.bsc.es
+```
 
-    -   If you repeat the process, you will find a button called **Configure SSH Hosts**. Then clik on **/home/user/.ssh/config**
+If you repeat the process, you will find a button called **Configure SSH Hosts**. Then clik on **/home/user/.ssh/config**
 
-        ![Alt text](./images/image7.png)
+![Alt text](./images/image7.png)
 
-    -   The config file will open for edit. By default, you will have something like this:
+The config file will open for edit. By default, you will have something like this:
 
-        ![Alt text](./images/image8.png)
+![Alt text](./images/image8.png)
 
-    -   Replace **\<Name\>** with your nickname and **\<user\_name\>** with your nord4 ID and save the file. You can also choose one of thEvery time you want to establish connection to the server with VSC you can just click on your name after **Connect to Host** or **Connect Current Window to Host**.
+Replace **\<Name\>** with your nickname and **\<user\_name\>** with your nord4 ID and save the file. You can also choose one of thEvery time you want to establish connection to the server with VSC you can just click on your name after **Connect to Host** or **Connect Current Window to Host**.
 
 # Folder structure
 
@@ -105,92 +101,73 @@ Nord4 uses a General Parallel File System (GPFS) where its mounted:
 
 For most users, the most important folders will be:
 
-### <p align="center"><strong>/gpfs/home</strong></p>
-### <p align="center"><strong>/gpfs/projects</strong></p>
-### <p align="center"><strong>/gpfs/apps</strong></p>
-### <p align="center"><strong>/gpfs/scratch</strong></p>
+### <p align="center">/gpfs/home</p>
+### <p align="center">/gpfs/projects</p>
+### <p align="center">/gpfs/apps</p>
+### <p align="center">/gpfs/scratch</p>
 
 These directories are available from all the Nord4 nodes.
 
--   ## **/gpfs/home**:
+## **/gpfs/home**:
 
-    -   **/gpfs/home** contains all the user's home directories inside the
-        corresponding institution folder. For example:
-        **/gpfs/home/rcli/idib057763/**.
+-   **/gpfs/home** contains all the user's home directories inside the corresponding institution folder. For example: **/gpfs/home/rcli/idib057763/**.
 
-    -   This is the current directory once the user logs in.
+-   This is the current directory once the user logs in.
 
-    -   Each home is private to its user and has a default quota of
-        10GB, so it's not intended to store data.
+-   Each home is private to its user and has a default quota of 10GB, so it's not intended to store data.
 
-    -   A backup is performed daily for **/gpfs/home**.
+-   A backup is performed daily for **/gpfs/home**.
 
-    -   It's indicated to store personal data and own-developed scripts.
+-   It's indicated to store personal data and own-developed scripts.
 
--   ## **/gpfs/projects**:
+## **/gpfs/projects**:
 
-    -   **/gpfs/projects** is a specific directory for each group. For
-        example, all the users in the group idib57 will have a common
-        space in **/gpfs/projects/idib57**.
+-   **/gpfs/projects** is a specific directory for each group. For example, all the users in the group idib57 will have a common space in **/gpfs/projects/idib57**.
 
-    -   This is where you should run your jobs.
+-   This is where you should run your jobs.
 
-    -   The data in **/gpfs/projects** is shared with all the users in the
-        group.
+-   The data in **/gpfs/projects** is shared with all the users in the group.
 
-    -   The quota of **/gpfs/projects/\<groupID\>** can be consulted running **bsc\_quota** in the terminal.
+-   The quota of **/gpfs/projects/\<groupID\>** can be consulted running **bsc\_quota** in the terminal.
 
-    -   IMPORTANT!! **/gpfs/projects** is not intended for long-term
-        storage. See data maintainment part.
+-   IMPORTANT!! **/gpfs/projects** is not intended for long-term storage. See data maintainment part.
 
-    -   **/gpfs/projects** is backuped periodically.
+-   **/gpfs/projects** is backuped periodically.
 
--   ## **/gpfs/apps/MN4**:
+## **/gpfs/apps/MN4**:
 
-    -   **/gpfs/apps** contains all the software, applications and libraries
-        already installed in the system and available to all users. For
-        example, if you want to run an R script with the R version 4.3.0
-        you should do:
+-   **/gpfs/apps** contains all the software, applications and libraries already installed in the system and available to all users. For example, if you want to run an R script with the R version 4.3.0 you should do:
 
-        ```bash
-        module load gcc pcre2 R/4.3.0 #load the desired modules and their dependencies
-        ```
+```bash
+module load gcc pcre2 R/4.3.0 #load the desired modules and their dependencies
+```
 
-        ```bash
-        Rscript <script_name>.R #run the script
-        ```
+```bash
+Rscript <script_name>.R #run the script
+```
 
-    -   For example, if we get the directory tree of the R folder with 1
-        level in depth, we can see all the R versions available. Each
-        one with its specific folder:
+-   For example, if we get the directory tree of the R folder with 1 level in depth, we can see all the R versions available. Each one with its specific folder:
 
-        ![Alt text](./images/image10.png)
+    ![Alt text](./images/image10.png)
 
-    -   And the tree of the R/4.3.0 with 4 levels in depth:
+-   And the tree of the R/4.3.0 with 4 levels in depth:
 
-        ![Alt text](./images/image11.png)
+    ![Alt text](./images/image11.png)
 
-    -   In **/gpfs/apps/MN4/R/4.3.0/GCC/lib64/R/library/** you can find all    the installed packages for this R version. Just to have a glimpse:
+-   In **/gpfs/apps/MN4/R/4.3.0/GCC/lib64/R/library/** you can find all the installed packages for this R version. Just to have a glimpse:
 
-        ![Alt text](./images/image12.png)
+![Alt text](./images/image12.png)
+
+-   The users are not allowed to modify any content of **/gpfs/apps** MN4. If you need some library or package that is not found in **/gpfs/apps/MN4** you should ask **<support@bsc.es>** to do it for you. Please, first make sure that it is actually not installed.
+
+-   Another important folder for bioinformatics is **/gpfs/apps/SL/BIODATA**. This folder is intended to store biological and clinical databases as well as reference files such as genome or transcriptome versions for the most common model organisms. It was originally created in StarLife (SL) cluster but is accessible to all Nord4 users. In this manner it is not necessary to upload these files to your **/gpfs/projects/\<group\_ID\>** if it is already in **/gpfs/apps/SL/BIODATA** and redundant copies inside the system are avoided.
 
 
-    -   The users are not allowed to modify any content of **/gpfs/apps** MN4.
-        If you need some library or package that is not found in
-        /gpfs/apps/MN4 you should ask **<support@bsc.es>** to do it for you.
-        Please, first make sure that it is actually not installed.
+## **/gpfs/scratch**:
 
-    -   Another important folder for bioinformatics is
-        **/gpfs/apps/SL/BIODATA**. This folder is intended to store biological and clinical databases as well as reference files such as genome or transcriptome versions for the most common model organisms. It was originally created in StarLife (SL) cluster but is accessible to all NORD4 users. In this manner it is not necessary to upload these files to your **/gpfs/projects/\<group\_ID\>** if it is already in **/gpfs/apps/SL/BIODATA** and redundant copies inside the system are avoided.
+-   Each user has a directory in **/gpfs/scratch/\<group\_ID\>/\<user\_ID\>**.
 
-
--   ## **/gpfs/scratch**:
-
-    -   Each user has a directory in
-        **/gpfs/scratch/\<group\_ID\>/\<user\_ID\>**.
-
-    -   This directory is only intended to store temporary files during
-        job execution and doesn't have any backup. However, this space in neither intended for long term storage. So is responsability of each group users to delete all the unnecessary files periodically.
+-   This directory is only intended to store temporary files during job execution and doesn't have any backup. However, this space in neither intended for long term storage. So is responsability of each group users to delete all the unnecessary files periodically.
 
 # Version Control
 
@@ -209,21 +186,21 @@ Second, you can track all the changes in your code by synchronizing your local w
 
 Steps:
 
-1.  Create an empty directory in your local machine that will be used as
+-   Create an empty directory in your local machine that will be used as
     a mount point.
 
-2.  Run sshfs to mirror the directory of interest in the HPC with your
+-   Run sshfs to mirror the directory of interest in the HPC with your
     newly created directory.
 
 ```bash
-sshfs -o workaround=rename [username]@n4login1.bsc.es:/path/to/remote/directory /path/to/local/empty/directory
+sshfs -o workaround=rename <username>@n<login_node>.bsc.es:/path/to/remote/directory /path/to/local/empty/directory
 ```
 
-3.  (If not done already) Clone an existing repository (GitHub,
+-   (If not done already) Clone an existing repository (GitHub,
     GitLab) into your local mounted directory. This will be immediately
     reflected in your remote directory.
 
-4.  Check that your repository is up to date, and which branch you are
+-   Check that your repository is up to date, and which branch you are
     operating from by running **git status** from your working terminal.
 
 # How to upload data
@@ -234,28 +211,31 @@ We recommend using rsync for uploading large datasets since it allows
 resume in case of unstable connection. The typical command through the
 transfer node would be:
 
--   **\# From local machine to remote path** (execute in local):
+-   **From local machine to remote path** (execute in local):
 
     ```bash
-    rsync -av --progress --partial --append local/path/files [user_name]@transfer1.bsc.es:/path/to/remote/directory
+    rsync -av --progress --partial --append local/path/files <user_name>@transfer1.bsc.es:/path/to/remote/directory
     ```
 
--   **\# From remote path to local** (execute in server):
+-   **From remote path to local** (execute in server):
 
     ```bash
-    rsync -av --progress --partial --append [user_name]@transfer1.bsc.es:/path/to/remote/files /your/local/destination/
+    rsync -av --progress --partial --append <user_name>@transfer1.bsc.es:/path/to/remote/files /your/local/destination/
     ```
 
 The transfer progress will be shown in the terminal as the files are
 being copied. Also, if the connection is being interrupted the transfer
-can be resumed because of the **\--partial** flag.
+can be resumed because of the **--partial** flag.
 
 # Data maintainment 
 
-A typical workflow when using an HPC environment involves three main
-steps: loading raw data onto the server (1), performing the analysis
-(2), and retrieving the results and downloading them to a shared space
-accessible to project collaborators (3).
+A typical workflow when using an HPC environment for bioinformatic puropses involves three main steps: 
+
+-   Loading raw data onto the server. 
+
+-   Performing the analysis.
+
+-   Retrieving the results and downloading them to a shared space accessible to project collaborators.
 
 But what happens as we start working on more projects? The amount of
 data (ranging from a few to several Terabytes) stored in our HPC space can
@@ -316,18 +296,9 @@ The different fields in the quota output are explained below:
 
 ## **Interactively:**
 
-In NORD4 you can run interactive jobs directly in the command line in 5
-different nodes: login1, login2, login3, login4 and login 5. As you can
-see, this means jobs can be run directly upon log-in to the cluster
-through three of the available login nodes: n4login1, n4login2 or
-n4login3. If you prefer you can change to login4 or login5 by just
-running **ssh login4** or **ssh login5**. However, these nodes are
-intended for editing, compiling, preparation and submission of batch
-executions so running time is limited to 10 minutes only.
+In Nord4 you can run interactive jobs directly in the command line in 5 different nodes: login1, login2, login3, login4 and login 5. As you can see, this means jobs can be run directly upon log-in to the cluster through three of the available login nodes: n4login1, n4login2 or n4login3. If you prefer you can change to login4 or login5 by just running **ssh login4** or **ssh login5**. However, these nodes are intended for editing, compiling, preparation and submission of batch executions so running time is limited to 10 minutes only.
 
-If your job needs more than 10 minutes to run it needs to be done
-through interactive allocation in the interactive partition or in a
-compute node (main partition).
+If your job needs more than 10 minutes to run it needs to be done through interactive allocation in the interactive partition or in a compute node (main partition).
 
 -   In an interactive partition:
 
@@ -373,7 +344,7 @@ Once you want to finish the interactive session just type **exit**.
 
 ## **Batch Submitting:**
 
-NORD4 cluster uses Slurm (Simple Linux Utility for Resource Management)
+Nord4 cluster uses Slurm (Simple Linux Utility for Resource Management)
 as its job scheduler. Slurm organizes and allocates computing resources
 in HPC clusters, ensuring fair and efficient usage.
 
@@ -388,17 +359,13 @@ in HPC clusters, ensuring fair and efficient usage.
 -   Enables efficient sharing of compute resources among multiple users
     and workloads.
 
-A job is the basic unit of execution in Slurm. It is defined by a job
-script (a text file containing a set of Slurm directives and shell
-commands). The directives specify the job's resource requirements and are written as special comments in the script. These must follow a specific
-syntax to correctly inform the system of the job\'s needs.
+A job is the basic unit of execution in Slurm. It is defined by a job script (a text file containing a set of Slurm directives and shell commands). The directives specify the job's resource requirements and are written as special comments in the script. These must follow a specific syntax to correctly inform the system of the job\'s needs.
 
 Jobs are submitted using the sbatch command-line tool. Sbatch does:
 
 -   Accepts a job script containing Slurm directives and shell commands.
 
--   Submits the script to Slurm, which queues and schedules it for
-    execution on available compute nodes.
+-   Submits the script to Slurm, which queues and schedules it for execution on available compute nodes.
 
 -   Returns a job ID, which can be used to monitor or manage the job.
 
@@ -442,11 +409,11 @@ module load <necessary modules>
 <rest of the code>
 ```
 
-Bear in mind that in NORD4 each CPU has approximately 2GB of RAM so
-necessary CPUs can be calculated as (GB needed) / 2.
+Bear in mind that in Nord4 each CPU has approximately 2GB of RAM so
+necessary CPUs can be calculated as (GB needed)/2.
 
 As an example, here's a sbatch script to call an Rscript called
-my\_r\_script.R to run in a single NORD4 node with approximately 8GB of
+my\_r\_script.R to run in a single Nord4 node with approximately 8GB of
 RAM for 1.5 hours as maximum:
 
 ```bash
@@ -484,7 +451,7 @@ To see the status of the job just type **squeue** and it will appear
 together with the JOBID. To cancel a job, whether it is running or not,
 just type **scancel \<JOBID\>**.
 
-NORD4 has 72 nodes with 96GB/node but if your job requires more RAM
+Nord4 has 72 nodes with 96GB/node but if your job requires more RAM
 there is the possibility to specify a high memory node (384GB/node i.e.
 8GB per core). Add the following in the \#SBATCH directives:
 
@@ -494,7 +461,7 @@ there is the possibility to specify a high memory node (384GB/node i.e.
 
 Requesting these nodes will make the job last longer in the queue before start running.
 
-# Rstudio in Nord4 server
+## Rstudio in Nord4 server
 
 ### **Private connection to compute node**
 
