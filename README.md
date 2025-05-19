@@ -10,7 +10,13 @@
 
 [How to execute jobs](#how-to-execute-jobs)
 
-How to acces the resources
+[Interactivelly:](#interactively)
+
+[Batch Submmiting:](#batch-submitting)
+
+[Rstudio in Nord4 server](#rstudio-in-nord4-server)
+
+# How to acces the resources
 ==========================
 
 Cluster resources can be reached in different ways, but all require
@@ -32,7 +38,7 @@ in the password and you will see something like this:
 ![Alt text](./images/image1.png)
 
 In this case we have logged in via n4login2. If we type pwd we will
-see, we are inside our home (/home/rcli/\<user\_name\>) directory.
+see, we are inside our home (**/home/rcli/\<user\_name\>**) directory.
 Using cd command you can move inside the system.
 
 -   **Nautilus**
@@ -53,7 +59,7 @@ sftp://<user_name>@<login_node>.bsc.es/
 ```
 and click "Connect".
 
-Your home (/gpfs/home/\<institution\>/\<user\_name\>) will open and then you can
+Your home (**/gpfs/home/\<institution\>/\<user\_name\>**) will open and then you can
 navigate through all the directories.
 
 -   **Visual Studio Code**
@@ -91,7 +97,7 @@ navigate through all the directories.
 
     -   Replace \<Name\> with your nickname and \<user\_name\> with your nord4 ID and save the file. You can also choose one of thEvery time you want to establish connection to the server with VSC you can just click on your name after "Connect to Host" or "Connect Current Window to Host".
 
-Folder structure
+# Folder structure
 ================
 
 Nord4 uses a General Parallel File System (GPFS) where its mounted:
@@ -112,41 +118,41 @@ These directories are available from all the Nord4 nodes.
 
 -   **/gpfs/home**:
 
-    -   /gpfs/home contains all the user's home directories inside the
+    -   **/gpfs/home** contains all the user's home directories inside the
         corresponding group folder. For example:
-        /gpfs/home/rcli/idib057763/.
+        **/gpfs/home/rcli/idib057763/**.
 
     -   This is the current directory once the user logs in.
 
     -   Each home is private to its user and has a default quota of
         10GB, so it's not intended to store data.
 
-    -   A backup is performed daily for /gpfs/home.
+    -   A backup is performed daily for **/gpfs/home**.
 
     -   It's indicated to store personal data and own-developed scripts.
 
 -   **/gpfs/projects**:
 
-    -   /gpfs/projects is a specific directory for each group. For
+    -   **/gpfs/projects** is a specific directory for each group. For
         example, all the users in the group idib57 will have a common
-        space in /gpfs/projects/idib57.
+        space in **/gpfs/projects/idib57**.
 
     -   This is where you should run your jobs.
 
-    -   The data in /gpfs/projects is shared with all the users in the
+    -   The data in **/gpfs/projects** is shared with all the users in the
         group.
 
-    -   The quota of /gpfs/projects/\<groupID\> can be consulted running
+    -   The quota of **/gpfs/projects/\<groupID\>** can be consulted running
         *bsc\_quota* in the terminal.
 
-    -   IMPORTANT! ! /gpfs/projects is not intended for long-term
+    -   IMPORTANT!! **/gpfs/projects** is not intended for long-term
         storage. See data maintainment part.
 
-    -   /gpfs/projects is backuped periodically.
+    -   **/gpfs/projects** is backuped periodically.
 
 -   **/gpfs/apps/MN4**:
 
-    -   /gpfs/apps contains all the software, applications and libraries
+    -   **/gpfs/apps** contains all the software, applications and libraries
         already installed in the system and available to all users. For
         example, if you want to run an R script with the R version 4.3.0
         you should do:
@@ -169,44 +175,40 @@ These directories are available from all the Nord4 nodes.
 
         ![Alt text](./images/image11.png)
 
-    -   In /gpfs/apps/MN4/R/4.3.0/GCC/lib64/R/library/ you can find all    the installed packages for this R version. Just to have a glimpse:
+    -   In **/gpfs/apps/MN4/R/4.3.0/GCC/lib64/R/library/** you can find all    the installed packages for this R version. Just to have a glimpse:
 
         ![Alt text](./images/image12.png)
 
 
-    -   The users are not allowed to modify any content of /gpfs/apps/MN4.
+    -   The users are not allowed to modify any content of **/gpfs/apps** MN4.
         If you need some library or package that is not found in
         /gpfs/apps/MN4 you should ask <support@bsc.es> to do it for you.
         Please, first make sure that it is actually not installed.
 
     -   Another important folder for bioinformatics is
-        /gpfs/apps/SL/BIODATA. This folder is intended to store biological
-        and clinical databases as well as reference files such as genome or transcriptome versions for the most common model organisms. It was originally created in StarLife (SL) cluster but is accessible to all NORD4 users. In this manner it is not necessary to upload these files to your /gpfs/projects/\<group\_ID\> if it is already in /gpfs/apps/SL/BIODATA and redundant copies inside the system are avoided.
+        **/gpfs/apps/SL/BIODATA**. This folder is intended to store biological and clinical databases as well as reference files such as genome or transcriptome versions for the most common model organisms. It was originally created in StarLife (SL) cluster but is accessible to all NORD4 users. In this manner it is not necessary to upload these files to your **/gpfs/projects/\<group\_ID\>** if it is already in **/gpfs/apps/SL/BIODATA** and redundant copies inside the system are avoided.
 
 
 -   **/gpfs/scratch**:
 
     -   Each user has a directory in
-        /gpfs/scratch/\<group\_ID\>/\<user\_ID\>.
+        **/gpfs/scratch/\<group\_ID\>/\<user\_ID\>**.
 
     -   This directory is only intended to store temporary files during
         job execution and doesn't have any backup. However, this space in neither intended for long term storage. So is responsability of each group users to delete all the unnecessary files periodically.
 
-Version Control
-===============
+# Version Control
 
 There\'s no outgoing internet connection from the cluster, which
-prevents the use of external repositories directly from our machines. To
-circumvent that, you can use the sshfs command in your local machine.
+prevents the use of external repositories directly from our machines. To circumvent that, you can use the sshfs command in your local machine.
 Doing that, you can mount a desired directory from our GPFS system in
 your local machine.
 
 First, by mounting a desired remote directory onto a local directory of
 your laptop, you can work locally on your existing code in the cluster
-and making sure all the changes are replicated in the corresponding file
-within the GPFS system.\
-Second, you can track all the changes in your code by synchronizing your
-local working directory with a cloud repository (using git).
+and making sure all the changes are replicated in the corresponding file within the GPFS system.
+
+Second, you can track all the changes in your code by synchronizing your local working directory with a cloud repository (using git).
 
 ![Alt text](./images/image13.png)
 
@@ -229,8 +231,7 @@ sshfs -o workaround=rename [username]@n4login1.bsc.es:/path/to/remote/directory 
 4.  Check that your repository is up to date, and which branch you are
     operating from by running **git status** from your working terminal.
 
-How to upload data
-==================
+# How to upload data
 
 To copy files from/to the Cluster you can use direct scp, sftp or rsync with the aid of transfer nodes. 
 
@@ -254,8 +255,7 @@ The transfer progress will be shown in the terminal as the files are
 being copied. Also, if the connection is being interrupted the transfer
 can be resumed because of the "\--partial" flag.
 
-Data maintainment 
-=================
+# Data maintainment 
 
 A typical workflow when using an HPC environment involves three main
 steps: loading raw data onto the server (1), performing the analysis
@@ -288,10 +288,10 @@ idib57.
 ![Alt text](./images/image14.png)
 
 Each user has a fixed quota of 80 GB in their home directory, which is
-accessible only by that specific user---hence the \'USR\' type. In
+accessible only by that specific user---hence the *USR* type. In
 contrast, the quotas for /gpfs/projects/GROUP and /gpfs/scratch/GROUP
 are shared among all members of the same project, corresponding to the
-\'GRP\' type.
+*GRP* type.
 
 The different fields in the quota output are explained below:
 
@@ -319,10 +319,9 @@ The different fields in the quota output are explained below:
 -   **In doubt** (Files): Same as above, but refers to
     unaccounted file counts rather than disk space.
 
-How to execute jobs
-===================
+# How to execute jobs
 
-**Interactively:**
+## **Interactively:**
 
 In NORD4 you can run interactive jobs directly in the command line in 5
 different nodes: login1, login2, login3, login4 and login 5. As you can
@@ -380,7 +379,7 @@ running while 32597257 is still in pending (PD) state (ST).
 
 Once you want to finish the interactive session just type **exit**.
 
-**Batch Submitting:**
+## **Batch Submitting:**
 
 NORD4 cluster uses Slurm (Simple Linux Utility for Resource Management)
 as its job scheduler. Slurm organizes and allocates computing resources
@@ -399,8 +398,7 @@ in HPC clusters, ensuring fair and efficient usage.
 
 A job is the basic unit of execution in Slurm. It is defined by a job
 script (a text file containing a set of Slurm directives and shell
-commands). The directives specify the job's resource requirements and are
-written as special comments in the script. These must follow a specific
+commands). The directives specify the job's resource requirements and are written as special comments in the script. These must follow a specific
 syntax to correctly inform the system of the job\'s needs.
 
 Jobs are submitted using the sbatch command-line tool. Sbatch does:
@@ -418,9 +416,7 @@ The basic sbatch syntax is:
     #SBATCH --directive=<value>
 ```
 
-In most bioinformatic processes a single node will be enough for jobs to
-run. So, we recommend always setting \#SBATCH \--node=1 and only modify
-two main directives: cpus-per-task and time.
+In most bioinformatic processes a single node will be enough for jobs to run. So, we recommend always setting \#SBATCH \--node=1 and only modify two main directives: cpus-per-task and time.
 
 ```bash
    #SBATCH --cpus-per-task=<value>
@@ -506,7 +502,7 @@ there is the possibility to specify a high memory node (384GB7node i.e.
 
 Requesting these nodes means the job will last longer in the queue (before start running).
 
-Rstudio in Nord4 server
+# Rstudio in Nord4 server
 =======================
 
 
@@ -546,7 +542,7 @@ RSTUDIO/1.3-rserver
 
 # For RStudio server (default port: 8787)
 
-rserver \--www-address=127.0.0.1
+rserver --www-address=127.0.0.1
 ```
 
 Once you have it ready, open a terminal and run the script doing:
