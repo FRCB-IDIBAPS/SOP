@@ -142,6 +142,8 @@ These directories are available from all the Nord4 nodes.
     -   IMPORTANT! ! /gpfs/projects is not intended for long-term
         storage. See data maintainment part.
 
+    -   /gpfs/projects is backuped periodically.
+
 -   **/gpfs/apps/MN4**:
 
     -   /gpfs/apps contains all the software, applications and libraries
@@ -181,16 +183,14 @@ These directories are available from all the Nord4 nodes.
         /gpfs/apps/SL/BIODATA. This folder is intended to store biological
         and clinical databases as well as reference files such as genome or transcriptome versions for the most common model organisms. It was originally created in StarLife (SL) cluster but is accessible to all NORD4 users. In this manner it is not necessary to upload these files to your /gpfs/projects/\<group\_ID\> if it is already in /gpfs/apps/SL/BIODATA and redundant copies inside the system are avoided.
 
-```{=html}
-<!-- -->
-```
--   **[/gpfs/scratch]{.underline}**:
+
+-   **/gpfs/scratch**:
 
     -   Each user has a directory in
         /gpfs/scratch/\<group\_ID\>/\<user\_ID\>.
 
     -   This directory is only intended to store temporary files during
-        job execution.
+        job execution and doesn't have any backup. However, this space in neither intended for long term storage. So is responsability of each group users to delete all the unnecessary files periodically.
 
 Version Control
 ===============
@@ -208,6 +208,8 @@ within the GPFS system.\
 Second, you can track all the changes in your code by synchronizing your
 local working directory with a cloud repository (using git).
 
+![Alt text](./images/image13.png)
+
 Steps:
 
 1.  Create an empty directory in your local machine that will be used as
@@ -216,11 +218,11 @@ Steps:
 2.  Run sshfs to mirror the directory of interest in the HPC with your
     newly created directory.
 
-> **sshfs -o workaround=rename
-> \[username\]\@n4login1.bsc.es:/path/to/remote/directory
-> /path/to/local/empty/directory**
+```bash
+sshfs -o workaround=rename [username]@n4login1.bsc.es:/path/to/remote/directory /path/to/local/empty/directory
+```
 
-3.  \[If not done already\] Clone an existing repository (GitHub,
+3.  (If not done already) Clone an existing repository (GitHub,
     GitLab) into your local mounted directory. This will be immediately
     reflected in your remote directory.
 
@@ -230,23 +232,23 @@ Steps:
 How to upload data
 ==================
 
-To copy files from/to the Cluster you can use direct scp, sftp or rsync
-to the login nodes.
+To copy files from/to the Cluster you can use direct scp, sftp or rsync with the aid of transfer nodes. 
 
 We recommend using rsync for uploading large datasets since it allows
 resume in case of unstable connection. The typical command through the
-transfer node would be (you c):
+transfer node would be:
 
 -   **\# From local machine to remote path** (execute in local):
 
-    -   **rsync -av \--progress \--partial \--append local/path/files
-        \[user\_name\]\@transfer1.bsc.es:/path/to/remote/directory**
+    ```bash
+    rsync -av --progress --partial --append local/path/files [user_name]@transfer1.bsc.es:/path/to/remote/directory
+    ```
 
--   **\# From remote path to local** (execute in server)**:**
+-   **\# From remote path to local** (execute in server):
 
-    -   **rsync -av \--progress \--partial \--append
-        idib057763\@transfer1.bsc.es:/path/to/remote/files
-        /your/local/destination/**
+    ```bash
+    rsync -av --progress --partial --append [user_name]@transfer1.bsc.es:/path/to/remote/files /your/local/destination/
+    ```
 
 The transfer progress will be shown in the terminal as the files are
 being copied. Also, if the connection is being interrupted the transfer
@@ -283,6 +285,8 @@ Quota space on nord4 can be consulted via the command **bsc\_quota**.
 In the following image are shown the different block spaces for group
 idib57.
 
+![Alt text](./images/image14.png)
+
 Each user has a fixed quota of 80 GB in their home directory, which is
 accessible only by that specific user---hence the \'USR\' type. In
 contrast, the quotas for /gpfs/projects/GROUP and /gpfs/scratch/GROUP
@@ -291,34 +295,34 @@ are shared among all members of the same project, corresponding to the
 
 The different fields in the quota output are explained below:
 
--   **[Usage]{.underline}**: The amount of disk space currently in use.
+-   **Usage**: The amount of disk space currently in use.
 
--   **[Quota]{.underline}**: The soft limit of the fileset. Exceeding
+-   **Quota**: The soft limit of the fileset. Exceeding
     this limit by less than 5% will not immediately block writes, but if
     the limit remains exceeded beyond the grace period (typically 7
     days), the fileset will be blocked.
 
--   **[Limit]{.underline}**: The hard limit of the fileset. Surpassing
+-   **Limit**: The hard limit of the fileset. Surpassing
     this limit will immediately block any further data writing.
 
--   **[In doubt]{.underline}**: Disk usage that is not yet accounted
+-   **In doubt**: Disk usage that is not yet accounted
     for. This may result from ongoing operations, exceeded quotas, or
     write errors.
 
--   **[Grace]{.underline}**: The time remaining before the fileset is
+-   **Grace**: The time remaining before the fileset is
     blocked due to exceeding the soft limit. The default grace period is
     7 days.
 
--   **[Files]{.underline}**: The total number of files within the
+-   **Files**: The total number of files within the
     fileset.
 
--   **[In doubt]{.underline}** (Files): Same as above, but refers to
+-   **In doubt** (Files): Same as above, but refers to
     unaccounted file counts rather than disk space.
 
 How to execute jobs
 ===================
 
-**[Interactively:]{.underline}**
+**Interactively:**
 
 In NORD4 you can run interactive jobs directly in the command line in 5
 different nodes: login1, login2, login3, login4 and login 5. As you can
@@ -335,15 +339,20 @@ compute node (main partition).
 
 -   In an interactive partition:
 
-    -   **salloc -p interactive -A \<UNIXGROUP\> -q \<queue\>.**
+    ```bash
+    salloc -p interactive -A <UNIXGROUP> -q <queue>.
+    ```
 
 -   In a compute node:
 
-    -   **salloc -n1 -c2 -A \<UNIXGROUP\> -q \<queue\>** \#Example to
-        request 1 task and 2 CPUs per task.
+    ```bash
+    salloc -n1 -c2 -A <UNIXGROUP> -q <queue> #Example to request 1 task and 2 CPUs per task.
+    ```
 
 If you are not sure about what queues are available you can run the
 command **bsc\_queues**.
+
+![Alt text](./images/image15.png)
 
 In the image above you can see there are 3 different queues available
 for this user, their description and limitations.
@@ -355,11 +364,15 @@ compute node.
 
 In the following example we started two interactive jobs:
 
+![Alt text](./images/image16.png)
+
 The one with the JOBID 32597260 is running in the interactive partition
 and node login4 was allocated. The job with JOBID 32597257 has been
 launched in the main partition, but the user tried to allocate the job
 in the interactive queue and therefore no node has been allocated since
 this relation is not allowed.
+
+![Alt text](./images/image17.png)
 
 To run interactive sessions in the main partition queue parameter has to
 be set to cli or debug like in the job 32597261. Notice it is already
@@ -401,39 +414,45 @@ Jobs are submitted using the sbatch command-line tool. Sbatch does:
 
 The basic sbatch syntax is:
 
-\#SBATCH \--directive=\<value\>
+```bash
+    #SBATCH --directive=<value>
+```
 
 In most bioinformatic processes a single node will be enough for jobs to
 run. So, we recommend always setting \#SBATCH \--node=1 and only modify
-two main directives:
+two main directives: cpus-per-task and time.
 
--   \#SBATCH \--cpus-per-task=\<value\>
+```bash
+   #SBATCH --cpus-per-task=<value>
 
--   \#SBATCH \--time=\<hh:mm:ss\>
+   #SBATCH --time=<hh:mm:ss>
+```
 
 A regular sbatch script would have the following pattern:
 
-**\#!/bin/bash**
+```bash
+#!/bin/bash
 
-**\#SBATCH \--job-name=\<job\_name\>** **\# Job name**
+#SBATCH --job-name=<job_name>           # Job name
 
-**\#SBATCH \--output=\<job\_name\>.out** **\# Output file**
+#SBATCH --output=<job_name>.out         # Output file
 
-**\#SBATCH \--error=\<job\_name\>.err** **\# Error file**
+#SBATCH --error=<job_name>.err          # Error file
 
-**\#SBATCH \--nodes=1** **\# Number of nodes**
+#SBATCH --nodes=1                       # Number of nodes
 
-**\#SBATCH \--cpus-per-task=\<value\>** **\# Number of CPUs per task**
+#SBATCH --cpus-per-task=<value>         # Number of CPUs per task
 
-**\#SBATCH \--time=\<hh:mm:ss\>** **\# Time limit**
+#SBATCH --time=<hh:mm:ss>               # Time limit
 
-**\#SBATCH \--account=\<UNIX\_GROUP\>** **\# UNIX GROUP**
+#SBATCH --account=<UNIX_GROUP>          # UNIX GROUP
 
-**\#SBATCH \--qos=\<queue\>** **\# queue where to run the job**
+#SBATCH --qos=<queue>                   # queue where to run the job
 
-**module load \<necessary modules\>**
+module load <necessary modules>
 
-**\<rest of the code\>**
+<rest of the code>
+```
 
 Bear in mind that in NORD4 each CPU has approximately 2GB of RAM so
 necessary CPUs can be calculated as (GB needed) / 2.
@@ -442,32 +461,36 @@ As an example, here's a sbatch script to call an Rscript called
 my\_r\_script.R to run in a single NORD4 node with approximately 8GB of
 RAM for 1.5 hours as maximum:
 
-**\#!/bin/bash**
+```bash
+#!/bin/bash**
 
-**\#SBATCH \--job-name=R\_job** **\# Job name**
+#SBATCH --job-name=R_job            # Job name
 
-**\#SBATCH \--output=R\_job.out** **\# Output file**
+#SBATCH --output=R_job.out          # Output file
 
-**\#SBATCH \--error=R\_job.err** **\# Error file**
+#SBATCH --error=R_job.err           # Error file
 
-**\#SBATCH \--nodes=1** **\# Number of nodes**
+#SBATCH --nodes=1                   # Number of nodes
 
-**\#SBATCH \--cpus-per-task=4** **\# Number of CPUs per task**
+#SBATCH --cpus-per-task=4           # Number of CPUs per task
 
-**\#SBATCH \--time=01:30:00** **\# Time limit (hh:mm:ss)**
+#SBATCH --time=01:30:00             # Time limit (hh:mm:ss)
 
-**\#SBATCH \--account=idib57** **\# UNIX GROUP**
+#SBATCH --account=idib57            # UNIX GROUP
 
-**\#SBATCH \--qos=cli** **\# queue where job will run**
+#SBATCH --qos=cli                   # queue where job will run
 
-**module load gcc pcre2 R/4.3.0 \# Load R module and dependencies.**
+module load gcc pcre2 R/4.3.0       # Load R module and dependencies.
 
-**Rscript path/to/my\_R\_script.R \# Execute the Rscript.**
+Rscript path/to/my_R_script.R       # Execute the Rscript.
+```
 
 This sbatch script can be either saved as a .sh or .sbatch (for example:
-R\_job.sbatch) and the correct form to run it is:
+R_job.sbatch) and the correct form to run it is:
 
-**sbatch R\_job.sbatch**
+```bash
+sbatch R_job.sbatch
+```
 
 To see the status of the job just type **squeue** and it will appear
 together with the JOBID. To cancel a job, whether it is running or not,
@@ -477,11 +500,13 @@ NORD4 has 72 nodes with 96GB/node but if your job requires more RAM
 there is the possibility to specify a high memory node (384GB7node i.e.
 8GB per core). Add the following in the \#SBATCH directives:
 
-**\#SBATCH --constraint=highmem**
+```bash
+#SBATCH --constraint=highmem
+```
 
-Requesting these nodes means the job will last longer in the queue.
+Requesting these nodes means the job will last longer in the queue (before start running).
 
-**Rstudio in Nord4 server**
+Rstudio in Nord4 server
 
 **Private connection to compute node**
 
