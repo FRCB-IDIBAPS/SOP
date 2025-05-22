@@ -313,8 +313,7 @@ You can switch between login nodes using commands like **ssh login4** after conn
 
 ## **Allocating jobs**
 
-If your job needs more than 10 minutes to run it needs to be done through interactive allocation in the interactive partition or in a compute node (main partition).
-
+If your job requires more than 10 minutes to run, it must be executed through an interactive allocation in the interactive partition or submitted to a compute node in the main partition.
 -   In an interactive partition:
 
     ```bash
